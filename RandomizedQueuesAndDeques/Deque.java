@@ -37,7 +37,7 @@ public class Deque<Item> implements Iterable<Item> {
 	public void addFirst(Item item) {
 		// insert the item at the front
 		if (item == null)
-			throw new NoSuchElementException();
+			throw new NullPointerException();
 		Node newfirst = new Node();
 		if (first == null)
 			newfirst.next = null;
@@ -56,7 +56,7 @@ public class Deque<Item> implements Iterable<Item> {
 	public void addLast(Item item) {
 		// insert the item at the end
 		if (item == null)
-			throw new NoSuchElementException();
+			throw new NullPointerException();
 		Node newlast = new Node();
 		if (last == null)
 			newlast.pre = null;
@@ -76,7 +76,7 @@ public class Deque<Item> implements Iterable<Item> {
 	public Item removeFirst() {
 		// delete and return the item at the front
 		if (size == 0)
-			throw new UnsupportedOperationException("empty deque");
+			throw new NoSuchElementException("empty deque");
 		Item curfirst = first.item;
 		if (first == last) {
 			first = null;
@@ -92,7 +92,7 @@ public class Deque<Item> implements Iterable<Item> {
 	public Item removeLast() {
 		// delete and return the item at the end
 		if (size == 0)
-			throw new UnsupportedOperationException("empty deque");
+			throw new NoSuchElementException("empty deque");
 		Item curlast = last.item;
 		if (first == last) {
 			first = null;
@@ -120,17 +120,21 @@ public class Deque<Item> implements Iterable<Item> {
 		}
 
 		public Item next() {
-			if(!hasNext())
+			if (!hasNext())
 				throw new NoSuchElementException();
 			Item curitem = current.item;
 			current = current.next;
 			return curitem;
 
 		}
+
 		public void remove() {
-	        throw new UnsupportedOperationException("remove");
-	    }
+			throw new UnsupportedOperationException("remove");
+		}
 
 	}
-	// public static void main(String[] args) // unit testing
+
+	public static void main(String[] args) {
+		// unit testing
+	}
 }
